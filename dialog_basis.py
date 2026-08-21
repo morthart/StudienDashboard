@@ -1,3 +1,4 @@
+# Dieses Modul: Stellt gemeinsame Grundfunktionen bereit, die von mehreren Dialogen verwendet werden.
 import tkinter as tk
 from tkinter import messagebox, ttk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------

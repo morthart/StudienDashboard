@@ -1,3 +1,4 @@
+# Dieses Modul: Ändert die fachlichen Objekte Studiengang, Semester und Kurs ohne Abhängigkeit von der GUI.
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 # Fachliche Verwaltung
 #
@@ -18,6 +19,7 @@ from studiengang import Studiengang
 
 
 # ======================================================================================================================================================
+# Klasse StudiengangVerwaltung: Erstellt und verändert Studiengangsobjekte ohne GUI- oder Persistenzabhängigkeit.
 class StudiengangVerwaltung:
     """Erstellt und verändert Studiengangsobjekte ohne GUI- oder Persistenzabhängigkeit."""
 # ======================================================================================================================================================
@@ -102,6 +104,7 @@ class StudiengangVerwaltung:
 
 
 # ======================================================================================================================================================
+# Klasse SemesterVerwaltung: Ändert ausschließlich Semesterdaten und kennt keine grafische Oberfläche.
 class SemesterVerwaltung:
     """Ändert ausschließlich Semesterdaten und kennt keine grafische Oberfläche."""
 # ======================================================================================================================================================
@@ -193,6 +196,7 @@ class SemesterVerwaltung:
 
 
 # ======================================================================================================================================================
+# Klasse KursVerwaltung: Ändert ausschließlich Kursdaten und kennt keine grafische Oberfläche.
 class KursVerwaltung:
     """Ändert ausschließlich Kursdaten und kennt keine grafische Oberfläche."""
 # ======================================================================================================================================================

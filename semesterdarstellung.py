@@ -1,3 +1,4 @@
+# Dieses Modul: Zeigt die Semester als GUI-Karten an und kennzeichnet deren aktuellen Zustand.
 import tkinter as tk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from konstanten import (
@@ -16,6 +17,7 @@ from semester import Semester
 
 
 # ======================================================================================================================================================
+# Klasse SemesterDarstellung: Stellt Semesterkarten dar und enthält keine fachlichen Änderungsaktionen.
 class SemesterDarstellung:
     """Stellt Semesterkarten dar und enthält keine fachlichen Änderungsaktionen."""
 # ======================================================================================================================================================
@@ -69,6 +71,7 @@ class SemesterDarstellung:
         if darf_anlegen:
             sichtbare_karten.append(None)
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for index, semester in enumerate(sichtbare_karten):
             zeile = index // spalten
             spalte = index % spalten

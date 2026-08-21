@@ -1,4 +1,5 @@
 from __future__ import annotations
+# Dieses Modul: Definiert die Daten und fachlichen Zustandsabfragen eines einzelnen Kurses.
 
 from dataclasses import dataclass
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -9,6 +10,7 @@ from konstanten import MIN_ECTS_PRO_KURS, ZULAESSIGE_KURSNOTEN
 
 # ======================================================================================================================================================
 @dataclass
+# Klasse Kurs: Speichert die Daten eines Kurses innerhalb eines Semesters.
 class Kurs:
     """Speichert die Daten eines Kurses innerhalb eines Semesters."""
 

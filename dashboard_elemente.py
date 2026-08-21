@@ -1,3 +1,4 @@
+# Dieses Modul: Enthält wiederverwendbare Hilfsfunktionen und GUI-Elemente des Dashboards.
 import tkinter as tk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from konstanten import (
@@ -18,6 +19,7 @@ from kurs import Kurs
 
 
 # ======================================================================================================================================================
+# Klasse DashboardElemente: Enthält wiederverwendbare Karten, Buttons und Statusdarstellungen.
 class DashboardElemente:
     """Enthält wiederverwendbare Karten, Buttons und Statusdarstellungen."""
 
@@ -184,6 +186,7 @@ class DashboardElemente:
         neutralen Punkt. Die ECTS werden ausschließlich im Inhaltsbereich ausgegeben.
         """
 
+        # Nur tatsächlich vorhandene Noten dürfen in den gewichteten Notenschnitt einfließen.
         if kurs.note is not None:
             return f"{kurs.note:.1f}"
 

@@ -1,3 +1,4 @@
+# Dieses Modul: Sammelt zentral verwendete fachliche und technische Konstanten.
 """Zentrale Konstanten des Studien-Dashboards.
 
 Die Datei enthält sowohl fachliche Grenzwerte als auch feste Farbwerte der

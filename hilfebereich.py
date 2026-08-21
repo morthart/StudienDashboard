@@ -1,3 +1,4 @@
+# Dieses Modul: Erzeugt und steuert den Hilfebereich der grafischen Oberfläche.
 import tkinter as tk
 from tkinter import ttk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -14,6 +15,7 @@ from dashboard import (
 
 
 # ======================================================================================================================================================
+# Klasse Hilfebereich: Baut das Hilfefenster auf und erklärt die sichtbaren Bereiche und Symbole.
 class Hilfebereich:
     """Baut das Hilfefenster auf und erklärt die sichtbaren Bereiche und Symbole."""
 
@@ -95,6 +97,7 @@ class Hilfebereich:
             )
         ]
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for bezeichnung, erklaerung in bereiche:
             self.baue_hilfe_textzeile(parent, zeile, bezeichnung, erklaerung)
             zeile = zeile + 1
@@ -131,6 +134,7 @@ class Hilfebereich:
             ("+", "Neues Semester oder neuen Kurs anlegen, solange noch Platz vorhanden ist")
         ]
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for symbol, erklaerung in symbole:
             symbol_label = tk.Label(
                 parent,
@@ -183,6 +187,7 @@ class Hilfebereich:
             (FARBE_ROT, "Nicht bestanden")
         ]
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for farbe, erklaerung in statuswerte:
             farbfeld = tk.Label(parent, text = "", background = farbe, width = 3)
             farbfeld.grid(row = zeile, column = 0, sticky = "w", pady = 3)

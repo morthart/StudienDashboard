@@ -1,3 +1,4 @@
+# Dieses Modul: Erzeugt das Grundgerüst des Hauptfensters und ordnet die großen GUI-Bereiche an.
 import tkinter as tk
 from tkinter import ttk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -6,6 +7,7 @@ from konstanten import FARBE_HINTERGRUND, FARBE_PROGRESS_HINTERGRUND, FARBE_GRUE
 
 
 # ======================================================================================================================================================
+# Klasse DashboardGrundgeruest: Baut ausschließlich das Hauptfenster, Menü und den scrollbaren Bereich auf.
 class DashboardGrundgeruest:
     """Baut ausschließlich das Hauptfenster, Menü und den scrollbaren Bereich auf."""
 # ======================================================================================================================================================
@@ -33,6 +35,7 @@ class DashboardGrundgeruest:
 
         stil = ttk.Style(self.anwendung)
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             stil.theme_use("clam")
         except tk.TclError:

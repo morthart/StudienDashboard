@@ -1,3 +1,4 @@
+# Dieses Modul: Zeigt die Kurse des ausgewählten Semesters als GUI-Karten an.
 import tkinter as tk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from konstanten import (
@@ -14,6 +15,7 @@ from kurs import Kurs
 
 
 # ======================================================================================================================================================
+# Klasse KursDarstellung: Stellt Kurskarten dar und enthält keine fachlichen Änderungsaktionen.
 class KursDarstellung:
     """Stellt Kurskarten dar und enthält keine fachlichen Änderungsaktionen."""
 # ======================================================================================================================================================
@@ -140,6 +142,7 @@ class KursDarstellung:
     ) -> None:
         """Setzt vorhandene Kurse und eine mögliche Anlegekarte in das Raster."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for index, kurs in enumerate(sichtbare_karten):
             zeile = index // 3
             spalte = index % 3
@@ -307,6 +310,7 @@ class KursDarstellung:
             self.fuege_kurs_aktion_hinzu(aktionen, "■", "Abschluss zurücksetzen", self.steuerung.kurs_stoppen, kurs)
             self.fuege_kurs_aktion_hinzu(aktionen, "✎", "Kurs bearbeiten", self.steuerung.kurs_bearbeiten, kurs)
 
+        # Anerkannte Kurse zählen zu den erreichten ECTS, besitzen aber keine reguläre Kursnote.
         if kurs.status == KursStatus.ANERKANNT:
             self.fuege_kurs_aktion_hinzu(aktionen, "✎", "Kurs bearbeiten", self.steuerung.kurs_bearbeiten, kurs)
 

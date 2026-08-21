@@ -1,6 +1,6 @@
+# Dieses Modul: Erzeugt die Anwendung und setzt die benötigten Komponenten zur Laufzeit zusammen.
 import tkinter as tk
 from pathlib import Path
-import sys
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from anwendungssteuerung import AnwendungsSteuerung
 from anwendungsdaten import Anwendungszustand
@@ -16,6 +16,7 @@ from fachverwaltung import StudiengangVerwaltung
 
 
 # ======================================================================================================================================================
+# Klasse StudienDashboard: Stellt das Tkinter-Hauptfenster bereit und verbindet die Anwendungskomponenten.
 class StudienDashboard(tk.Tk):
     """Stellt das Tkinter-Hauptfenster bereit und verbindet die Anwendungskomponenten.
 
@@ -35,19 +36,14 @@ class StudienDashboard(tk.Tk):
 
         self.richte_hauptfenster_ein()
 
-        if getattr(sys, "frozen", False):
-            basisordner = Path(sys.executable).parent
-        else:
-            basisordner = Path(__file__).parent
-
-        config_pfad = basisordner / "dashboard_config.json"
-        self.zustand = Anwendungszustand(config_pfad=config_pfad)
+        config_pfad = Path(__file__).parent / "dashboard_config.json"
+        self.zustand = Anwendungszustand(config_pfad = config_pfad)
 
         self.persistenz = PersistenzVerwaltung()
         self.programmdaten = ProgrammdatenVerwaltung(
             self.zustand,
             self.persistenz,
-            basisordner
+            Path(__file__).parent
         )
         self.studiengang_verwaltung = StudiengangVerwaltung(self.zustand)
         self.semester_verwaltung = SemesterVerwaltung(self.zustand)

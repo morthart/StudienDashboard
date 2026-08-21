@@ -1,3 +1,4 @@
+# Dieses Modul: Bündelt die sichtbaren Dashboard-Bereiche und stößt deren Aktualisierung an.
 """Koordiniert die Darstellung des Dashboards über klar getrennte Komponenten."""
 
 import tkinter as tk
@@ -25,6 +26,7 @@ from semesterdarstellung import SemesterDarstellung
 
 
 # ======================================================================================================================================================
+# Klasse DashboardDarstellung: Besitzt die spezialisierten Darstellungsbereiche und koordiniert deren Aufbau.
 class DashboardDarstellung:
     """Besitzt die spezialisierten Darstellungsbereiche und koordiniert deren Aufbau.
 

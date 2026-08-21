@@ -1,3 +1,4 @@
+# Dieses Modul: Erfasst und prüft die Daten beim Anlegen oder Bearbeiten eines Kurses.
 import tkinter as tk
 from tkinter import ttk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7,6 +8,7 @@ from dialog_pruefungen import pruefe_kurs_ects_wert, pruefe_name
 
 
 # ======================================================================================================================================================
+# Klasse KursDatenDialog: Erfasst den Namen, die ECTS und die Anerkennung eines Kurses in einem Fenster.
 class KursDatenDialog(tk.Toplevel):
     """Erfasst den Namen, die ECTS und die Anerkennung eines Kurses in einem Fenster."""
 
@@ -104,6 +106,7 @@ class KursDatenDialog(tk.Toplevel):
     def uebernehmen(self) -> None:
         """Prüft Name und ECTS und übernimmt danach auch den Anerkannt-Haken."""
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             name = pruefe_name(
                 self.name_eingabe.get(),
@@ -113,6 +116,7 @@ class KursDatenDialog(tk.Toplevel):
             zeige_eingabefehler(self, self.name_eingabe, str(fehler))
             return
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             ects = pruefe_kurs_ects_wert(
                 self.ects_eingabe.get(),

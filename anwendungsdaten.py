@@ -1,4 +1,5 @@
 from __future__ import annotations
+# Dieses Modul: Hält den gemeinsamen Anwendungszustand, auf den Steuerung und Darstellung zugreifen.
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -11,6 +12,7 @@ from studiengang import Studiengang
 
 # ======================================================================================================================================================
 @dataclass
+# Klasse Configuration: Speichert technische Einstellungen des Programms.
 class Configuration:
     """Speichert technische Einstellungen des Programms."""
 
@@ -23,6 +25,7 @@ class Configuration:
 
 # ======================================================================================================================================================
 @dataclass
+# Klasse Anwendungszustand: Enthält den veränderlichen Zustand der laufenden Anwendung.
 class Anwendungszustand:
     """Enthält den veränderlichen Zustand der laufenden Anwendung.
 

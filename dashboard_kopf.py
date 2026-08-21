@@ -1,3 +1,4 @@
+# Dieses Modul: Berechnet und zeigt Kennzahlen, Noten und Gesamtfortschritt im Kopfbereich.
 import tkinter as tk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from konstanten import ZULAESSIGE_BESTEHENSNOTEN
@@ -15,6 +16,7 @@ from konstanten import (
 
 
 # ======================================================================================================================================================
+# Klasse DashboardKopfbereich: Zeigt Studiengang, Gesamtfortschritt und die drei Notenkennzahlen an.
 class DashboardKopfbereich:
     """Zeigt Studiengang, Gesamtfortschritt und die drei Notenkennzahlen an."""
 
@@ -354,6 +356,7 @@ class DashboardKopfbereich:
         if benoetigter_schnitt >= 4.0:
             return "Einfach nur\nbestehen :)"
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for note in ZULAESSIGE_BESTEHENSNOTEN:
             if benoetigter_schnitt >= note:
                 return f"{note:.1f}"

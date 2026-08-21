@@ -1,3 +1,4 @@
+# Dieses Modul: Kapselt die Dateioperationen und delegiert die JSON-Umwandlung an JsonDatenhaltung.
 import re
 from pathlib import Path
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -8,6 +9,7 @@ from studiengang import Studiengang
 
 
 # ======================================================================================================================================================
+# Klasse PersistenzVerwaltung: Kapselt Dateisystem, Dateinamen und JSON-Datenhaltung an einer zentralen Stelle.
 class PersistenzVerwaltung:
     """Kapselt Dateisystem, Dateinamen und JSON-Datenhaltung an einer zentralen Stelle."""
 # ======================================================================================================================================================
@@ -113,6 +115,7 @@ class PersistenzVerwaltung:
     def lade_studiengang_sicher(self, dateipfad: Path) -> Studiengang | None:
         """Lädt einen Studiengang für Listen oder Programmstart; fehlerhafte Dateien werden ausgelassen."""
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             return self.lade_studiengang(dateipfad)
         except (OSError, KeyError, TypeError, ValueError):
@@ -135,6 +138,7 @@ class PersistenzVerwaltung:
         if not self.datei_existiert(dateipfad):
             return None
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             return self.datenhaltung.lade_configuration(dateipfad)
         except (OSError, KeyError, TypeError, ValueError):

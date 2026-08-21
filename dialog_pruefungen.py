@@ -1,3 +1,4 @@
+# Dieses Modul: Enthält zentral verwendete Prüfungen und Umwandlungen für Benutzereingaben.
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from konstanten import (
     ECTS_PRO_SEMESTER,
@@ -31,6 +32,7 @@ def pruefe_wunschnote(eingabe: str) -> float:
     if not note_text:
         raise ValueError("Bitte Wunschnote eingeben.")
 
+    # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
     try:
         note = float(note_text.replace(",", "."))
     except ValueError as fehler:
@@ -54,6 +56,7 @@ def pruefe_kursnote(eingabe: str) -> float:
     if not note_text:
         raise ValueError("Bitte Note eingeben.")
 
+    # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
     try:
         note = float(note_text.replace(",", "."))
     except ValueError as fehler:
@@ -76,6 +79,7 @@ def pruefe_gesamt_ects_wert(eingabe: str, min_gesamt_ects: int) -> int:
     if not ects_text:
         raise ValueError("Bitte Gesamt-ECTS eingeben.")
 
+    # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
     try:
         gesamt_ects = int(ects_text)
     except ValueError as fehler:
@@ -113,6 +117,7 @@ def pruefe_kurs_ects_wert(eingabe: str, max_ects: int) -> int:
     if not ects_text:
         raise ValueError("Bitte ECTS eingeben")
 
+    # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
     try:
         ects = int(ects_text)
     except ValueError as fehler:

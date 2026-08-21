@@ -1,3 +1,4 @@
+# Dieses Modul: Steuert Benutzeraktionen und verbindet Dialoge, Fachverwaltung, Persistenz und Darstellung.
 from anwendungsdaten import Anwendungszustand
 from dialog_darstellung import DialogDarstellung
 from enums import KursStatus
@@ -12,6 +13,7 @@ from fachverwaltung import StudiengangVerwaltung
 
 
 # ======================================================================================================================================================
+# Klasse AnwendungsSteuerung: Verbindet Benutzeraktionen, Verwaltung, Darstellung und Speichern.
 class AnwendungsSteuerung:
     """Verbindet Benutzeraktionen, Verwaltung, Darstellung und Speichern.
 
@@ -83,6 +85,7 @@ class AnwendungsSteuerung:
         self.zustand.studiengang = self.programmdaten.lade_letzten_studiengang()
         self.programmdaten.waehle_ersten_kontext()
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.programmdaten.speichere_configuration()
         except OSError:
@@ -99,6 +102,7 @@ class AnwendungsSteuerung:
             self.programmdaten.startordner()
         )
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             return self.programmdaten.erstelle_configuration_aus_basisordner(basisordner)
         except OSError as fehler:
@@ -137,6 +141,7 @@ class AnwendungsSteuerung:
         if auswahl is None:
             return False
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             if auswahl:
                 self.programmdaten.stelle_aktuellen_speicherort_wieder_her()
@@ -159,6 +164,7 @@ class AnwendungsSteuerung:
 
         self.programmdaten.entferne_ungueltigen_letzten_studiengang(configuration)
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.programmdaten.speichere_configuration(configuration)
         except OSError as fehler:
@@ -176,6 +182,7 @@ class AnwendungsSteuerung:
     def speichern_und_aktualisieren(self) -> None:
         """Speichert den aktuellen Zustand und zeichnet danach das Dashboard neu."""
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.programmdaten.speichern()
         except OSError as fehler:
@@ -209,6 +216,7 @@ class AnwendungsSteuerung:
         name, wunschnote, gesamt_ects = daten
         ueberschreiben = False
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             if self.programmdaten.studiengang_existiert(name):
                 ueberschreiben = self.dialoge.frage_ja_nein(
@@ -272,6 +280,7 @@ class AnwendungsSteuerung:
 
         name = studiengaenge[auswahl]
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             studiengang = self.programmdaten.lade_studiengang(name)
             self.studiengang_verwaltung.uebernehme_aktuellen_studiengang(studiengang)
@@ -314,6 +323,7 @@ class AnwendungsSteuerung:
         name, wunschnote, gesamt_ects = daten
         ueberschreiben = False
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             if self.programmdaten.neuer_studiengangsname_ist_belegt(name):
                 ueberschreiben = self.dialoge.frage_ja_nein(
@@ -367,6 +377,7 @@ class AnwendungsSteuerung:
         if not bestaetigung:
             return
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.programmdaten.loesche_aktuellen_studiengang()
             self.studiengang_verwaltung.studiengang_loeschen()
@@ -383,6 +394,7 @@ class AnwendungsSteuerung:
     def semester_anlegen(self) -> None:
         """Legt ein Semester an und behandelt mögliche fachliche Fehler in der Darstellung."""
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.semester_verwaltung.semester_anlegen()
         except ValueError as fehler:
@@ -452,6 +464,7 @@ class AnwendungsSteuerung:
 
         name, ects, anerkannt = kursdaten
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.kurs_verwaltung.kurs_anlegen(name, ects, anerkannt)
         except ValueError as fehler:
@@ -494,6 +507,7 @@ class AnwendungsSteuerung:
 
         name, ects, anerkannt = kursdaten
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.kurs_verwaltung.kurs_bearbeiten(kurs, name, ects, anerkannt)
         except ValueError as fehler:
@@ -575,6 +589,7 @@ class AnwendungsSteuerung:
     def beenden(self) -> None:
         """Speichert nach Möglichkeit und beendet anschließend das Hauptfenster."""
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             self.programmdaten.speichern()
         except OSError as fehler:

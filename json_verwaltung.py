@@ -1,3 +1,4 @@
+# Dieses Modul: Wandelt Fachobjekte in JSON-kompatible Daten um und baut sie beim Laden wieder auf.
 import json
 from pathlib import Path
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -10,6 +11,7 @@ from studiengang import Studiengang
 
 
 # ======================================================================================================================================================
+# Klasse JsonDatenhaltung: Kapselt das JSON-Format und trennt die Fachklassen von der Speicherung.
 class JsonDatenhaltung:
     """Kapselt das JSON-Format und trennt die Fachklassen von der Speicherung.
 
@@ -30,6 +32,7 @@ class JsonDatenhaltung:
         }
 
         with dateipfad.open("w", encoding = "utf-8") as datei:
+            # Erst an dieser Stelle werden die zuvor umgewandelten Python-Daten tatsächlich als JSON geschrieben.
             json.dump(daten, datei, ensure_ascii = False, indent = 4)
 # ======================================================================================================================================================
 
@@ -39,6 +42,7 @@ class JsonDatenhaltung:
         """Lädt einen vollständigen Studiengang aus einer JSON-Datei."""
 
         with dateipfad.open("r", encoding = "utf-8") as datei:
+            # Die Datei wird zunächst als allgemeine JSON-Struktur gelesen; der Objektaufbau erfolgt anschließend getrennt davon.
             daten = json.load(datei)
 
         if not isinstance(daten, dict):
@@ -72,6 +76,7 @@ class JsonDatenhaltung:
         }
 
         with dateipfad.open("w", encoding = "utf-8") as datei:
+            # Erst an dieser Stelle werden die zuvor umgewandelten Python-Daten tatsächlich als JSON geschrieben.
             json.dump(daten, datei, ensure_ascii = False, indent = 4)
 # ======================================================================================================================================================
 
@@ -81,6 +86,7 @@ class JsonDatenhaltung:
         """Lädt die technischen Programmeinstellungen aus einer JSON-Datei."""
 
         with dateipfad.open("r", encoding = "utf-8") as datei:
+            # Die Datei wird zunächst als allgemeine JSON-Struktur gelesen; der Objektaufbau erfolgt anschließend getrennt davon.
             daten = json.load(datei)
 
         if not isinstance(daten, dict):

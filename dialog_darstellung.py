@@ -1,3 +1,4 @@
+# Dieses Modul: Bündelt die verschiedenen Dialogtypen hinter einer gemeinsamen Schnittstelle.
 import tkinter as tk
 from pathlib import Path
 from tkinter import filedialog, messagebox
@@ -10,6 +11,7 @@ from dialog_studiengang import studiengangsdaten_eingeben
 
 
 # ======================================================================================================================================================
+# Klasse DialogDarstellung: Bündelt sämtliche Dialoge und Meldungsfenster der Anwendung.
 class DialogDarstellung:
     """Bündelt sämtliche Dialoge und Meldungsfenster der Anwendung.
 

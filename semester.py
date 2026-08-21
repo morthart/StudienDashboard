@@ -1,4 +1,5 @@
 from __future__ import annotations
+# Dieses Modul: Definiert Semesterdaten und leitet Status sowie ECTS aus den enthaltenen Kursen ab.
 
 from dataclasses import dataclass
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -10,6 +11,7 @@ from kurs import Kurs
 
 # ======================================================================================================================================================
 @dataclass
+# Klasse Semester: Speichert die Nummer und alle Kurse eines Semesters.
 class Semester:
     """Speichert die Nummer und alle Kurse eines Semesters."""
 
@@ -44,6 +46,7 @@ class Semester:
     def sind_alle_kurse_fertig(self) -> bool:
         """Prüft, ob die ECTS aller vorhandenen Kurse angerechnet werden."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for kurs in self.kurse:
             if kurs.berechne_erreichte_ects() != kurs.ects:
                 return False
@@ -53,6 +56,7 @@ class Semester:
     def hat_nicht_bestandenen_kurs(self) -> bool:
         """Prüft, ob mindestens ein Kurs des Semesters mit 5.0 bewertet wurde."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for kurs in self.kurse:
             if kurs.ist_nicht_bestanden():
                 return True
@@ -62,6 +66,7 @@ class Semester:
     def wurde_mindestens_ein_kurs_begonnen(self) -> bool:
         """Prüft, ob mindestens ein Kurs begonnen, abgeschlossen oder anerkannt ist."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for kurs in self.kurse:
             if kurs.status != KursStatus.NICHT_BEGONNEN:
                 return True
@@ -111,6 +116,7 @@ class Semester:
     def finde_kurs(self, name: str) -> Kurs | None:
         """Sucht einen Kurs anhand seines Namens ohne Beachtung der Großschreibung."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for kurs in self.kurse:
             if kurs.name.casefold() == name.casefold():
                 return kurs

@@ -1,4 +1,5 @@
 from __future__ import annotations
+# Dieses Modul: Definiert Studiengangsdaten und berechnet ECTS-, Semester- und Notenkennzahlen.
 
 from dataclasses import dataclass
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -10,6 +11,7 @@ from semester import Semester
 
 # ======================================================================================================================================================
 @dataclass
+# Klasse Studiengang: Speichert den Studiengang und alle zugehörigen Semester.
 class Studiengang:
     """Speichert den Studiengang und alle zugehörigen Semester."""
 
@@ -33,6 +35,7 @@ class Studiengang:
 
         hoechste_nummer = 0
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for semester in self.semester:
             if semester.nummer > hoechste_nummer:
                 hoechste_nummer = semester.nummer
@@ -66,6 +69,7 @@ class Studiengang:
 
         anzahl = 0
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for semester in self.semester:
             if semester.berechne_status() == SemesterStatus.ABGESCHLOSSEN:
                 anzahl = anzahl + 1
@@ -75,6 +79,7 @@ class Studiengang:
     def hat_nicht_bestandenen_kurs(self) -> bool:
         """Prüft, ob im Studiengang mindestens ein Kurs mit 5.0 bewertet wurde."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for semester in self.semester:
             if semester.hat_nicht_bestandenen_kurs():
                 return True
@@ -88,11 +93,15 @@ class Studiengang:
         benotete_ects = 0
         anerkannte_ects = 0
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for semester in self.semester:
+            # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
             for kurs in semester.kurse:
+                # Anerkannte Kurse zählen zu den erreichten ECTS, besitzen aber keine reguläre Kursnote.
                 if kurs.status == KursStatus.ANERKANNT:
                     anerkannte_ects = anerkannte_ects + kurs.ects
 
+                # Nur tatsächlich vorhandene Noten dürfen in den gewichteten Notenschnitt einfließen.
                 if kurs.note is not None:
                     gewichtete_noten = gewichtete_noten + (kurs.note * kurs.ects)
                     benotete_ects = benotete_ects + kurs.ects
@@ -114,13 +123,16 @@ class Studiengang:
 
         gewichtete_noten, benotete_ects, anerkannte_ects = self.berechne_notendaten()
 
+        # Anerkannte ECTS werden abgezogen, weil für sie keine zukünftige Note mehr benötigt wird.
         maximal_benotete_ects = self.gesamt_ects - anerkannte_ects
         verbleibende_ects = maximal_benotete_ects - benotete_ects
 
         if verbleibende_ects <= 0:
             return None
 
+        # Für die Zielnote wird zuerst die insgesamt benötigte gewichtete Notensumme bestimmt.
         ziel_notenpunkte = self.wunschnote * maximal_benotete_ects
+        # Von der Zielsumme werden die bereits erreichten gewichteten Notenpunkte abgezogen.
         fehlende_notenpunkte = ziel_notenpunkte - gewichtete_noten
 
         return fehlende_notenpunkte / verbleibende_ects
@@ -128,6 +140,7 @@ class Studiengang:
     def semester_nummer_vorhanden(self, nummer: int, ausnahme: Semester | None = None) -> bool:
         """Prüft, ob die Nummer durch ein anderes Semester belegt ist."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for semester in self.semester:
             if semester is ausnahme:
                 continue
@@ -140,6 +153,7 @@ class Studiengang:
     def finde_semester(self, nummer: int) -> Semester | None:
         """Sucht ein Semester anhand seiner Nummer."""
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for semester in self.semester:
             if semester.nummer == nummer:
                 return semester
@@ -152,6 +166,7 @@ class Studiengang:
         nummer = 1
         max_semester = self.berechne_max_semester()
 
+        # Die Suche wird nur so lange fortgesetzt, bis die fachliche Grenze erreicht oder ein passender Wert gefunden wurde.
         while nummer <= max_semester:
             if not self.semester_nummer_vorhanden(nummer):
                 return nummer
@@ -163,6 +178,7 @@ class Studiengang:
     def sortiere_semester(self) -> None:
         """Sortiert die Semester aufsteigend nach ihrer Nummer."""
 
+        # Die Sortierung hält die Anzeige unabhängig von der Reihenfolge des Anlegens chronologisch.
         self.semester.sort(key = lambda semester: semester.nummer)
 
 # ======================================================================================================================================================

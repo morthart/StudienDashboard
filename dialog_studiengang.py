@@ -1,3 +1,4 @@
+# Dieses Modul: Erfasst und prüft die Daten beim Anlegen oder Bearbeiten eines Studiengangs.
 import tkinter as tk
 from tkinter import ttk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -8,6 +9,7 @@ from dialog_pruefungen import pruefe_gesamt_ects_wert, pruefe_name, pruefe_wunsc
 
 
 # ======================================================================================================================================================
+# Klasse StudiengangDatenDialog: Erfasst Name, Wunschnote und Gesamt-ECTS eines Studiengangs in einem Fenster.
 class StudiengangDatenDialog(tk.Toplevel):
     """Erfasst Name, Wunschnote und Gesamt-ECTS eines Studiengangs in einem Fenster."""
 
@@ -113,6 +115,7 @@ class StudiengangDatenDialog(tk.Toplevel):
     def uebernehmen(self) -> None:
         """Prüft die drei Felder nacheinander und übernimmt nur vollständige Daten."""
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             name = pruefe_name(
                 self.name_eingabe.get(),
@@ -122,12 +125,14 @@ class StudiengangDatenDialog(tk.Toplevel):
             zeige_eingabefehler(self, self.name_eingabe, str(fehler))
             return
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             wunschnote = pruefe_wunschnote(self.wunschnote_eingabe.get())
         except ValueError as fehler:
             zeige_eingabefehler(self, self.wunschnote_eingabe, str(fehler))
             return
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             gesamt_ects = pruefe_gesamt_ects_wert(
                 self.gesamt_ects_eingabe.get(),

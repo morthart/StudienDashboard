@@ -1,3 +1,4 @@
+# Dieses Modul: Erfasst eine Kursnote und übergibt nur eine bestätigte, gültige Eingabe.
 import tkinter as tk
 from tkinter import ttk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7,6 +8,7 @@ from dialog_pruefungen import pruefe_kursnote
 
 
 # ======================================================================================================================================================
+# Klasse NoteDialog: Erfasst eine Kursnote mit derselben Feldgröße und demselben Hinweis wie die Wunschnote.
 class NoteDialog(tk.Toplevel):
     """Erfasst eine Kursnote mit derselben Feldgröße und demselben Hinweis wie die Wunschnote."""
 
@@ -78,6 +80,7 @@ class NoteDialog(tk.Toplevel):
     def uebernehmen(self) -> None:
         """Prüft die Note und übernimmt ausschließlich eine zulässige Kursnote."""
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             note = pruefe_kursnote(self.note_eingabe.get())
         except ValueError as fehler:

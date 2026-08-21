@@ -1,3 +1,4 @@
+# Dieses Modul: Enthält einfache Eingabe- und Auswahldialoge für wiederkehrende Benutzerinteraktionen.
 import tkinter as tk
 from tkinter import messagebox, ttk
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -7,6 +8,7 @@ from konstanten import ECTS_PRO_SEMESTER, MIN_ECTS_PRO_KURS
 
 
 # ======================================================================================================================================================
+# Klasse EingabeDialog: Zentraler Dialog für Texteingaben; Escape bricht ohne Änderung ab.
 class EingabeDialog(tk.Toplevel):
     """Zentraler Dialog für Texteingaben; Escape bricht ohne Änderung ab."""
 
@@ -74,6 +76,7 @@ class EingabeDialog(tk.Toplevel):
 
 
 # ======================================================================================================================================================
+# Klasse AuswahlDialog: Zentraler Dialog für eine Auswahl aus einer Liste.
 class AuswahlDialog(tk.Toplevel):
     """Zentraler Dialog für eine Auswahl aus einer Liste."""
 
@@ -172,6 +175,7 @@ def text_eingeben(
 ) -> str | None:
     """Liest einen Text ein und verhindert leere Pflichtfelder."""
 
+    # Die Suche wird nur so lange fortgesetzt, bis die fachliche Grenze erreicht oder ein passender Wert gefunden wurde.
     while True:
         dialog = EingabeDialog(parent, titel, beschriftung, startwert)
 
@@ -203,12 +207,14 @@ def ganze_zahl_eingeben(
 ) -> int | None:
     """Liest eine ganze Zahl über die zentrale Eingabefunktion ein."""
 
+    # Die Suche wird nur so lange fortgesetzt, bis die fachliche Grenze erreicht oder ein passender Wert gefunden wurde.
     while True:
         wert = text_eingeben(parent, titel, beschriftung, startwert)
 
         if wert is None:
             return None
 
+        # Fehler bei Datei-, Konfigurations- oder Benutzervorgängen werden hier kontrolliert behandelt, statt die Anwendung abzubrechen.
         try:
             zahl = int(wert)
         except ValueError:
@@ -233,6 +239,7 @@ def ects_eingeben(
 ) -> int | None:
     """Liest einen positiven, durch fünf teilbaren ECTS-Wert ein."""
 
+    # Die Suche wird nur so lange fortgesetzt, bis die fachliche Grenze erreicht oder ein passender Wert gefunden wurde.
     while True:
         ects = ganze_zahl_eingeben(parent, titel, beschriftung, startwert)
 
@@ -276,6 +283,7 @@ def gesamt_ects_eingeben(
 ) -> int | None:
     """Liest Gesamt-ECTS ein, die positiv und durch die ECTS pro Semester teilbar sind."""
 
+    # Die Suche wird nur so lange fortgesetzt, bis die fachliche Grenze erreicht oder ein passender Wert gefunden wurde.
     while True:
         ects = ganze_zahl_eingeben(parent, titel, beschriftung, startwert)
 

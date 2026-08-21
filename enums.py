@@ -1,8 +1,10 @@
+# Dieses Modul: Definiert die festen Statuswerte für Semester, Kurse und Teilaufgaben.
 from enum import Enum
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # ======================================================================================================================================================
+# Klasse SemesterStatus: Beschreibt den automatisch berechneten Status eines Semesters.
 class SemesterStatus(Enum):
     """Beschreibt den automatisch berechneten Status eines Semesters."""
 
@@ -13,6 +15,7 @@ class SemesterStatus(Enum):
 
 
 # ======================================================================================================================================================
+# Klasse KursStatus: Beschreibt den Bearbeitungsstatus eines Kurses.
 class KursStatus(Enum):
     """Beschreibt den Bearbeitungsstatus eines Kurses."""
 

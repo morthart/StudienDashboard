@@ -1,3 +1,4 @@
+# Dieses Modul: Verwaltet Configuration, Speicherorte und das Laden bzw. Speichern von Studiengängen.
 from pathlib import Path
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from anwendungsdaten import Anwendungszustand, Configuration
@@ -7,6 +8,7 @@ from studiengang import Studiengang
 
 
 # ======================================================================================================================================================
+# Klasse ProgrammdatenVerwaltung: Verwaltet technische Programmeinstellungen und den Zugriff auf gespeicherte Studiengänge.
 class ProgrammdatenVerwaltung:
     """Verwaltet technische Programmeinstellungen und den Zugriff auf gespeicherte Studiengänge."""
 # ======================================================================================================================================================
@@ -196,6 +198,7 @@ class ProgrammdatenVerwaltung:
         namen = []
         dateipfade = self.persistenz.finde_json_dateien(self.zustand.configuration.speicherort)
 
+        # Die vorhandenen Elemente werden nacheinander ausgewertet, damit aus ihrem aktuellen Zustand das Ergebnis ermittelt werden kann.
         for dateipfad in dateipfade:
             studiengang = self.persistenz.lade_studiengang_sicher(dateipfad)
 
