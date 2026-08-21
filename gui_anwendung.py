@@ -1,6 +1,7 @@
 # Dieses Modul: Erzeugt die Anwendung und setzt die benötigten Komponenten zur Laufzeit zusammen.
 import tkinter as tk
 from pathlib import Path
+import sys
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 from anwendungssteuerung import AnwendungsSteuerung
 from anwendungsdaten import Anwendungszustand
