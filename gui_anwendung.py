@@ -36,14 +36,19 @@ class StudienDashboard(tk.Tk):
 
         self.richte_hauptfenster_ein()
 
-        config_pfad = Path(__file__).parent / "dashboard_config.json"
-        self.zustand = Anwendungszustand(config_pfad = config_pfad)
+        if getattr(sys, "frozen", False):
+            basisordner = Path(sys.executable).parent
+        else:
+            basisordner = Path(__file__).parent
+
+        config_pfad = basisordner / "dashboard_config.json"
+        self.zustand = Anwendungszustand(config_pfad=config_pfad)
 
         self.persistenz = PersistenzVerwaltung()
         self.programmdaten = ProgrammdatenVerwaltung(
             self.zustand,
             self.persistenz,
-            Path(__file__).parent
+            basisordner
         )
         self.studiengang_verwaltung = StudiengangVerwaltung(self.zustand)
         self.semester_verwaltung = SemesterVerwaltung(self.zustand)
